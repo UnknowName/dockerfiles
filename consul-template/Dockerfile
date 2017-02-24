@@ -11,5 +11,4 @@ WORKDIR /usr/local/sbin
 ADD nginx.tmp  /tmp/nginx.tmp
 RUN chmod +x /usr/local/sbin/*
 ENV CONSUL_ADDR 192.168.0.12:8500
-VOLUME  [/usr/sbin/nginx,/etc/nginx/nginx.conf]
-CMD consul-template -template "/tmp/nginx.tmp:/etc/nginx/nginx.conf:/usr/sbin/service nginx restart" -consul-addr=$CONSUL_ADDR
+CMD consul-template -template "/tmp/nginx.tmp:/etc/nginx/nginx.conf:service nginx restart" -consul-addr=$CONSUL_ADDR
