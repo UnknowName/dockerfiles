@@ -1,0 +1,15 @@
+upstream servers {
+   {{range service "tomcat"}}
+   server {{.Address}}:{{.Port}};
+   {{end}} 
+}
+
+server {
+    listen 80;
+    server_name -;
+
+    location / {
+        proxy_pass http://servers;
+    }
+}
+
