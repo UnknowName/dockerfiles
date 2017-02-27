@@ -6,7 +6,7 @@ upstream servers {
 
 server {
     listen 80;
-    server_name -;
+    server_name _;
 
     location / {
         proxy_pass http://servers;
