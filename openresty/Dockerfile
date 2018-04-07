@@ -12,4 +12,4 @@ RUN apt-get update \
     && apt-get update
 RUN  apt-get install openresty -y
 EXPOSE 80 443
-CMD ["openresty", "-g", "daemon off;"]
+CMD ["/usr/bin/openresty", "-g", "daemon off;"]
