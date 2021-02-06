@@ -6,8 +6,7 @@ RUN echo "start" \
     # && sed -i "s/security.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list \  
     && apt-get clean \
     && apt-get update \
-    && apt-get install wget -y \ 
-    && apt-get install -y gnupg2 wget lsb-release \
+    && apt-get install -y wget subversion  gnupg2 wget lsb-release \ 
     && wget https://files.freeswitch.org/repo/deb/debian-release/fsstretch-archive-keyring.asc \
     && apt-key add fsstretch-archive-keyring.asc \
     && echo "deb http://files.freeswitch.org/repo/deb/debian-release/ `lsb_release -sc` main" > /etc/apt/sources.list.d/fs.list \
