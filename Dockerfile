@@ -17,8 +17,6 @@ RUN echo "start" \
     && apt-get -y build-dep freeswitch \
     && tar -zxvf freeswitch-1.10.5.-release.tar.gz -C /usr/src \
     && cd /usr/src/freeswitch-1.10.5.-release \
-    && ./configure --help \
-    && exit 1 \
-    && ./configure --enable-optimization --enable-64 --enable-core-odbc-support \
+    && ./configure --enable-optimization --enable-64 --enable-core-odbc-support --enable-optimization --with-odbc \
     && make \
     && make install 
