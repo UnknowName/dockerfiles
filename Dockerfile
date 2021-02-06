@@ -13,10 +13,11 @@ RUN echo "start" \
     && echo "deb-src http://files.freeswitch.org/repo/deb/debian-release/ `lsb_release -sc` main" >> /etc/apt/sources.list.d/fs.list \
     && apt-get update \
     # apt-cache search PackageName
-    && wget https://files.freeswitch.org/releases/freeswitch/freeswitch-1.0.0.tar.gz \
+    && wget https://files.freeswitch.org/releases/freeswitch/freeswitch-1.10.5.-release.tar.gz \
     && apt-get -y build-dep freeswitch \
-    && tar -zxvf freeswitch-1.0.0.tar.gz -C /usr/src \
-    && cd /usr/src/freeswitch-1.0.0 \
+    && tar -zxvf freeswitch-1.10.5.-release.tar.gz -C /usr/src \
+    && cd /usr/src/freeswitch-1.10.5.-release \
+    && ./bootstrap.sh -j \
     && ./configure --enable-optimization --enable-64 --enable-core-odbc-support \
     && make \
     && make install 
