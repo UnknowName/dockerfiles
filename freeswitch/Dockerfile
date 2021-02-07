@@ -25,13 +25,13 @@ RUN export VERSION=1.10.5 \
     && tar -zxvf freeswitch-${VERSION}.-release.tar.gz -C /usr/src \
     && rm -rf freeswitch-${VERSION}.-release.tar.gz \
     && cd /usr/src/freeswitch-${VERSION}.-release \
-    && ./configure --enable-optimization --enable-64 --enable-core-odbc-support --with-odbc \
+    && ./configure --enable-optimization --enable-64 --enable-core-odbc-support --with-odbc --prefix=/usr/local/freeswitch \
     && make \
     && make install \
     && make cd-sounds-install \
     && ln -s /usr/local/freeswitch/bin/freeswitch  /usr/bin/freeswitch \
     && ln -s /usr/local/freeswitch/bin/fs_cli      /usr/bin/fs_cli \
-    && ln -s /usr/local/freeswitch/conf/freeswitch /etc/freeswitch \
+    && ln -s /usr/local/freeswitch/etc/freeswitch  /etc/freeswitch \
     # Disable IPv6
     && mv /etc/freeswitch/sip_profiles/external-ipv6.xml /etc/freeswitch/sip_profiles/external-ipv6.xml.bak \
     && mv /etc/freeswitch/sip_profiles/internal-ipv6.xml /etc/freeswitch/sip_profiles/internal-ipv6.xml.bak \
