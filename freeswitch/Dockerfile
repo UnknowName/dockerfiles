@@ -15,7 +15,7 @@ RUN export VERSION=1.10.5 \
     && tar -zxvf freeswitch-${VERSION}.-release.tar.gz -C /usr/src \
     && rm -rf freeswitch-${VERSION}.-release.tar.gz \
     && cd /usr/src/freeswitch-${VERSION}.-release \
-    && ./configure --enable-optimization --enable-64 --enable-core-odbc-support --enable-optimization --with-odbc  --prefix=/opt/freeswitch \
+    && ./configure --enable-optimization --enable-64 --enable-core-odbc-support --enable-optimization --with-odbc \
     && make \
     && make install \
     && make cd-sounds-install \
