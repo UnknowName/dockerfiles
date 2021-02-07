@@ -2,22 +2,26 @@ FROM debian:10
 ENV TZ=Asia/Shanghai
 
 RUN export VERSION=1.10.5 \
+    && apt-clean \
     && apt-get update \
-    && apt-get install -y wget subversion gnupg2 wget lsb-release\ 
+    && apt-get install -y wget unixodbc subversion gnupg2 wget lsb-release \ 
     && wget https://files.freeswitch.org/repo/deb/debian-release/fsstretch-archive-keyring.asc \
     && apt-key add fsstretch-archive-keyring.asc \
+    && rm -rf fsstretch-archive-keyring.asc \
     # Add FreeSWITCH apt
     && echo "deb http://files.freeswitch.org/repo/deb/debian-release/ `lsb_release -sc` main" > /etc/apt/sources.list.d/fs.list \
     && echo "deb-src http://files.freeswitch.org/repo/deb/debian-release/ `lsb_release -sc` main" >> /etc/apt/sources.list.d/fs.list \
-    # Add MySQL  odbc apt
-    && echo "deb http://ftp.de.debian.org/debian sid main" >> /etc/apt/sources.list.d/mysql.list \
-    && echo "deb http://security.debian.org/debian-security jessie/updates main" >> /etc/apt/sources.list.d/mysql.list \
+    && apt-get clean \
     && apt-get update \
+    && apt-get -y build-dep freeswitch \
     # apt-cache search PackageName
     && wget https://files.freeswitch.org/releases/freeswitch/freeswitch-${VERSION}.-release.tar.gz \
-    && apt-get -y build-dep freeswitch \
     # ODBC MySQL Support
-    && apt-get install -y libmyodbc  unixodbc \
+    && echo "deb http://ftp.de.debian.org/debian sid main" >> /etc/apt/sources.list.d/mysql.list \
+    && echo "deb http://security.debian.org/debian-security jessie/updates main" >> /etc/apt/sources.list.d/mysql.list \
+    && apt-get clean \
+    && apt-get update \
+    && apt-get install -y libmyodbc \
     && tar -zxvf freeswitch-${VERSION}.-release.tar.gz -C /usr/src \
     && rm -rf freeswitch-${VERSION}.-release.tar.gz \
     && cd /usr/src/freeswitch-${VERSION}.-release \
