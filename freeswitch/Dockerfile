@@ -35,5 +35,5 @@ RUN export VERSION=1.10.5 \
     && rm -rf  /usr/src/freeswitch-${VERSION}.-release \
     && apt-get clean
 ADD docker-entrypoint.sh /
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["sh", "/docker-entrypoint.sh"]
 CMD ["freeswitch"]
