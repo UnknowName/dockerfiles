@@ -38,6 +38,6 @@ RUN export VERSION=1.10.5 \
     && sed -i "s/::/0.0.0.0/g" /etc/freeswitch/autoload_configs/event_socket.conf.xml \
     && rm -rf  /usr/src/freeswitch-${VERSION}.-release \
     && apt-get clean
-ADD docker-entrypoint.sh /
+ADD ./docker-entrypoint.sh /
 ENTRYPOINT ["sh", "/docker-entrypoint.sh"]
 CMD ["freeswitch"]
