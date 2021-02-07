@@ -10,10 +10,6 @@ RUN export VERSION=1.10.5 \
     && echo "deb http://files.freeswitch.org/repo/deb/debian-release/ `lsb_release -sc` main" > /etc/apt/sources.list.d/fs.list \
     && echo "deb-src http://files.freeswitch.org/repo/deb/debian-release/ `lsb_release -sc` main" >> /etc/apt/sources.list.d/fs.list \
     # Add MySQL  odbc apt
-    # && echo "deb http://repo.mysql.com/apt/debian/ `lsb_release -sc` mysql-apt-config" > /etc/apt/sources.list.d/mysql.list \
-    # && echo "deb http://repo.mysql.com/apt/debian/ `lsb_release -sc` mysql-8.0" >> /etc/apt/sources.list.d/mysql.list \
-    # && echo "deb http://repo.mysql.com/apt/debian/ `lsb_release -sc` mysql-tools" >> /etc/apt/sources.list.d/mysql.list \
-    # && echo "deb-src http://repo.mysql.com/apt/debian/ `lsb_release -sc` mysql-8.0" >> /etc/apt/sources.list.d/mysql.list \
     && echo "deb http://ftp.de.debian.org/debian sid main" >> /etc/apt/sources.list.d/mysql.list \
     && echo "deb http://security.debian.org/debian-security jessie/updates main" >> /etc/apt/sources.list.d/mysql.list \
     && apt-get update \
@@ -38,5 +34,5 @@ RUN export VERSION=1.10.5 \
     && sed -i "s/::/0.0.0.0/g" /etc/freeswitch/autoload_configs/event_socket.conf.xml \
     && rm -rf  /usr/src/freeswitch-${VERSION}.-release \
     && apt-get clean
-COPY ./docker-entrypoint.sh
+ADD docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
