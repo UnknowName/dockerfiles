@@ -2,7 +2,7 @@ FROM debian:10
 ENV TZ=Asia/Shanghai
 
 RUN export VERSION=1.10.5 \
-    && apt-clean \
+    && apt-get clean \
     && apt-get update \
     && apt-get install -y wget unixodbc subversion gnupg2 wget lsb-release \ 
     && wget https://files.freeswitch.org/repo/deb/debian-release/fsstretch-archive-keyring.asc \
