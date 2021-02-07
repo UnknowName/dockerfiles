@@ -14,7 +14,7 @@ RUN export VERSION=1.10.5 \
     && echo "deb http://security.debian.org/debian-security jessie/updates main" >> /etc/apt/sources.list.d/mysql.list \
     && apt-get update \
     # ODBC MySQL Support
-    && apt-get install -y libmysqlclient18 mysql-community-client libmyodbc  unixodbc\
+    && apt-get install -y libmyodbc  unixodbc \
     # apt-cache search PackageName
     && wget https://files.freeswitch.org/releases/freeswitch/freeswitch-${VERSION}.-release.tar.gz \
     && apt-get -y build-dep freeswitch \
@@ -36,3 +36,4 @@ RUN export VERSION=1.10.5 \
     && apt-get clean
 ADD docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["freeswitch"]

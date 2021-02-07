@@ -1,10 +1,24 @@
 #!/bin/bash
 export PATH
+set -e
 
 if [ $1 = "freeswitch" ];then
     if [ -z ${MYSQL_ADDR} ];then
         echo "not set MYSQL_ADDR, will use default file to stage FreeSWITCH core"
     else
+        if [ ${MYSQL_DATABASE} ]; then
+            if [ -z ${MYSQL_USER} ];then
+                echo "Use default root for mysql user"
+                MYSQL_USER="root"
+            fi
+            if [ -z ${MYSQL_PASSWORD} ];then
+                echo "MySQL user ${MYSQL_USER} password not set!"
+                exit 1
+            fi
+            # Create ODBC config file
+        else
+            MYSQL_DATABASE="freeswitch"
+        fi
         echo "set MYSQL_ADDR, check user and passsword"
     fi
     /usr/local/freeswitch/bin/freeswitch
