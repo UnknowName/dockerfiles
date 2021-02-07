@@ -13,11 +13,11 @@ RUN export VERSION=1.10.5 \
     && echo "deb http://ftp.de.debian.org/debian sid main" >> /etc/apt/sources.list.d/mysql.list \
     && echo "deb http://security.debian.org/debian-security jessie/updates main" >> /etc/apt/sources.list.d/mysql.list \
     && apt-get update \
-    # ODBC MySQL Support
-    && apt-get install -y libmyodbc  unixodbc \
     # apt-cache search PackageName
     && wget https://files.freeswitch.org/releases/freeswitch/freeswitch-${VERSION}.-release.tar.gz \
     && apt-get -y build-dep freeswitch \
+    # ODBC MySQL Support
+    && apt-get install -y libmyodbc  unixodbc \
     && tar -zxvf freeswitch-${VERSION}.-release.tar.gz -C /usr/src \
     && rm -rf freeswitch-${VERSION}.-release.tar.gz \
     && cd /usr/src/freeswitch-${VERSION}.-release \
