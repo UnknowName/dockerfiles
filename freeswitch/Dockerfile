@@ -4,7 +4,7 @@ ENV TZ=Asia/Shanghai
 RUN export VERSION=1.10.5 \
     && apt-get clean \
     && apt-get update \
-    && apt-get install -y wget unixodbc subversion gnupg2 wget lsb-release \ 
+    && apt-get install -y wget  unixodbc subversion gnupg2 wget lsb-release \ 
     && wget https://files.freeswitch.org/repo/deb/debian-release/fsstretch-archive-keyring.asc \
     && apt-key add fsstretch-archive-keyring.asc \
     && rm -rf fsstretch-archive-keyring.asc \
@@ -21,7 +21,7 @@ RUN export VERSION=1.10.5 \
     && echo "deb http://security.debian.org/debian-security jessie/updates main" >> /etc/apt/sources.list.d/mysql.list \
     && apt-get clean \
     && apt-get update \
-    && apt-get install -y libmyodbc \
+    && apt-get install -y libmyodbc lua5.1 freeswitch-mod-lua  freeswitch-mod-expr \
     && tar -zxvf freeswitch-${VERSION}.-release.tar.gz -C /usr/src \
     && rm -rf freeswitch-${VERSION}.-release.tar.gz \
     && cd /usr/src/freeswitch-${VERSION}.-release \
