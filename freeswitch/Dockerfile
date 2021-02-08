@@ -37,7 +37,8 @@ RUN export VERSION=1.10.5 \
     && mv /etc/freeswitch/sip_profiles/internal-ipv6.xml /etc/freeswitch/sip_profiles/internal-ipv6.xml.bak \
     && sed -i "s/::/0.0.0.0/g" /etc/freeswitch/autoload_configs/event_socket.conf.xml \
     && rm -rf  /usr/src/freeswitch-${VERSION}.-release \
-    && apt-get clean
+    && apt-get clean \
+    && apt-get autoremove -y gcc make wget subversion
 ADD ./freeswitch/docker-entrypoint.sh /
 ENTRYPOINT ["sh", "/docker-entrypoint.sh"]
 CMD ["freeswitch"]
