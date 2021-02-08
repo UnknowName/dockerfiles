@@ -38,7 +38,8 @@ if [ $1 = "freeswitch" ];then
         echo "User=${MYSQL_USER}" >> /etc/odbc.ini
         echo "Password=${MYSQL_PASSWORD}" >> /etc/odbc.ini
         echo "Database=${MYSQL_DATABASE}" >> /etc/odbc.ini
-        echo "Option=3" >> /etc/odbc.ini
+        # FLAG_MULTI_STATEMENTS
+        echo "Option=67108864" >> /etc/odbc.ini
         sed -i 's/<!--<param name="odbc-dsn" value="dsn:user:pass"\/>-->/<param name="odbc-dsn" value="freeswitch::"\/>/g' /etc/freeswitch/sip_profiles/internal.xml
     fi
     # /usr/local/freeswitch/bin/freeswitch
