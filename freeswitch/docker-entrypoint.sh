@@ -42,7 +42,5 @@ if [ $1 = "freeswitch" ];then
         sed -i 's/<!--<param name="odbc-dsn" value="dsn:user:pass"\/>-->/<param name="odbc-dsn" value="freeswitch::"\/>/g' /etc/freeswitch/sip_profiles/internal.xml
     fi
     # /usr/local/freeswitch/bin/freeswitch
-else
-    # exec "$@"
 fi
 exec "$@"
