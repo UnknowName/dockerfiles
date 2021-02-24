@@ -40,7 +40,13 @@ if [ $1 = "freeswitch" ];then
         echo "Database=${MYSQL_DATABASE}" >> /etc/odbc.ini
         # FLAG_MULTI_STATEMENTS
         echo "Option=67108864" >> /etc/odbc.ini
+        sed -i 's/<!--<param name="odbc-dsn" value="dsn:user:pass"\/>-->/<param name="odbc-dsn" value="freeswitch::"\/>/g' /etc/freeswitch/autoload_configs/db.conf.xml
+        sed -i 's/<!--<param name="odbc-dsn" value="dsn:user:pass"\/>-->/<param name="odbc-dsn" value="freeswitch::"\/>/g' /etc/freeswitch/autoload_configs/switch.conf.xml
+        sed -i 's/<!--<param name="odbc-dsn" value="dsn:user:pass"\/>-->/<param name="odbc-dsn" value="freeswitch::"\/>/g' /etc/freeswitch/autoload_configs/callcenter.conf.xml
+        sed -i 's/<!--<param name="odbc-dsn" value="dsn:user:pass"\/>-->/<param name="odbc-dsn" value="freeswitch::"\/>/g' /etc/freeswitch/autoload_configs/fifo.conf.xml
+        sed -i 's/<!--<param name="odbc-dsn" value="dsn:user:pass"\/>-->/<param name="odbc-dsn" value="freeswitch::"\/>/g' /etc/freeswitch/autoload_configs/voicemail.conf.xml 
         sed -i 's/<!--<param name="odbc-dsn" value="dsn:user:pass"\/>-->/<param name="odbc-dsn" value="freeswitch::"\/>/g' /etc/freeswitch/sip_profiles/internal.xml
+        sed -i 's/<!--<param name="odbc-dsn" value="dsn:user:pass"\/>-->/<param name="odbc-dsn" value="freeswitch::"\/>/g' /etc/freeswitch/sip_profiles/external.xml   
     fi
     # /usr/local/freeswitch/bin/freeswitch
 fi
